@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)    # CMake最低版本要求3.10
+cmake_minimum_required(VERSION 3.16)    # CMake最低版本要求3.10
 project(network-mental)                     # 工程名
 
 set(CMAKE_CXX_STANDARD 11)              # 全局使用C++11标准编译所有代码

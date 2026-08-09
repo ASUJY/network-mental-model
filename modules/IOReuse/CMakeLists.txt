@@ -1,5 +1,5 @@
 get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-
+find_package(Threads REQUIRED)
 file(GLOB DEMO_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/demo*")
 
 foreach (DEMO_DIR ${DEMO_DIRS})
@@ -12,9 +12,8 @@ foreach (DEMO_DIR ${DEMO_DIRS})
         file(GLOB HEADER_FILES "${DEMO_DIR}/*.h")
 
         if (SRC_FILES)
-            add_executable(${TARGET_NAME} ${SRC_FILES} ${HEADER_FILES}
-                    demo02_epoll_server/main.cpp)
-            target_link_directories(${TARGET_NAME} PRIVATE ${DEMO_DIR})
+            add_executable(${TARGET_NAME} ${SRC_FILES} ${HEADER_FILES})
+            target_link_directories(${TARGET_NAME} PRIVATE ${DEMO_DIR} Threads::Threads)
         endif ()
     endif ()
 endforeach ()
