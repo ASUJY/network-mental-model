@@ -1,3 +1,7 @@
+/**
+ * 用SIGURG检测带外数据是否到达
+ */
+
 #include <arpa/inet.h>
 #include <assert.h>
 #include <errno.h>

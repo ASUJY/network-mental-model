@@ -3,7 +3,7 @@
 //
 
 /*
- * 使用splice函数实现回射服务器
+ * 使用splice函数实现一个零拷贝的回射服务器(将客户端发送的数据原样返回给客户端)
  * */
 
 #include <arpa/inet.h>
@@ -51,6 +51,9 @@ int main(int argc, char *argv[]) {
     } else {
         int pipefd[2];
         assert(ret != -1);
+
+        // 通过splice函数将客户端的内容读入到piped[1]中，然后再使用
+        // splice函数从pipefd[0]中读出该内容到客户端
         ret = pipe(pipefd); // 创建管道
         // 将connfd上流入的客户数据定向到管道中
         ret = splice(connfd, NULL, pipefd[1], NULL, 32768,
