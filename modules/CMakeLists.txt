@@ -1,3 +1,5 @@
 add_subdirectory(api)
 add_subdirectory(IOReuse)
 add_subdirectory(signal)
+add_subdirectory(multi-process)
+add_subdirectory(multi-thread)
