@@ -1,5 +1,4 @@
 get_filename_component(MODULE_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
-find_package(Threads REQUIRED)
 file(GLOB DEMO_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/demo*")
 
 foreach (DEMO_DIR ${DEMO_DIRS})
@@ -13,7 +12,8 @@ foreach (DEMO_DIR ${DEMO_DIRS})
 
         if (SRC_FILES)
             add_executable(${TARGET_NAME} ${SRC_FILES} ${HEADER_FILES})
-            target_link_directories(${TARGET_NAME} PRIVATE ${DEMO_DIR} Threads::Threads)
+            target_link_directories(${TARGET_NAME} PRIVATE ${DEMO_DIR})
+            target_link_libraries(${TARGET_NAME} pthread)
         endif ()
     endif ()
 endforeach ()
